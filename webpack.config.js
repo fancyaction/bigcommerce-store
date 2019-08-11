@@ -1,5 +1,6 @@
 import path from 'path';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
+import Dotenv from 'dotenv-webpack';
 
 
 
@@ -35,6 +36,9 @@ module.exports = {
         contentBase: path.join(__dirname, 'src')
     },
     plugins: [
+        new Dotenv({
+            path: './.env'
+          }),
         new HtmlWebpackPlugin({
             template: 'app/index.html'
         })
