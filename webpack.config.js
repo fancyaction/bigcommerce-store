@@ -1,5 +1,5 @@
-const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+import path from 'path';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
 
 
 
@@ -13,13 +13,30 @@ module.exports = {
     module: {
         rules: [
             { test: /\.(js)$/, use: 'babel-loader' },
-            { test: /\.css$/, use: ['style-loader', 'css-loader'] }
+            {
+                test: /\.(css|scss)$/,
+                use: [
+                    'style-loader',
+                    'css-loader',
+                    'sass-loader'
+                ]
+            },
+            {
+                test: /\.(jpg|jpeg|png|gif|mp3|svg)$/,
+                loaders: ['file-loader']
+            }
         ]
     },
-    mode: 'development',
+    mode: process.env.NODE_ENV || 'development',
+    resolve: {
+        modules: [path.resolve(__dirname, 'src'), 'node_modules']
+    },
+    devServer: {
+        contentBase: path.join(__dirname, 'src')
+    },
     plugins: [
         new HtmlWebpackPlugin({
-            template: 'app/index.html',
+            template: 'app/index.html'
         })
     ]
-}
+};
