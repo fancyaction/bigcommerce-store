@@ -1,6 +1,7 @@
 import path from 'path';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import Dotenv from 'dotenv-webpack';
+import webpack from 'webpack';
 
 
 
@@ -16,11 +17,7 @@ module.exports = {
             { test: /\.(js)$/, use: 'babel-loader' },
             {
                 test: /\.(css|scss)$/,
-                use: [
-                    'style-loader',
-                    'css-loader',
-                    'sass-loader'
-                ]
+                use: ['style-loader', 'css-loader', 'sass-loader']
             },
             {
                 test: /\.(jpg|jpeg|png|gif|mp3|svg)$/,
@@ -32,15 +29,22 @@ module.exports = {
     resolve: {
         modules: [path.resolve(__dirname, 'src'), 'node_modules']
     },
-    devServer: {
-        contentBase: path.join(__dirname, 'src')
-    },
     plugins: [
         new Dotenv({
             path: './.env'
-          }),
+        }),
         new HtmlWebpackPlugin({
             template: 'app/index.html'
-        })
-    ]
+        }),
+        new webpack.HotModuleReplacementPlugin()
+    ],
+    devServer: {
+        hot: true,
+        historyApiFallback: true,
+        port: 8080,
+        open: true,
+        proxy: {
+            '/xhr': 'http://localhost:7777'
+        }
+    }
 };
