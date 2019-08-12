@@ -7,21 +7,7 @@ import Layout from './Components/Layout';
 
 class App extends Component {
     getRecords = async () => {
-        const URL = `${process.env.API_PATH}catalog/products`;
-
-        const request = new Request(URL, {
-            method: 'GET',
-            mode: 'cors',
-            redirect: 'follow',
-            headers: new Headers({
-                'Content-Type': 'application/json',
-                Accept: 'application/json',
-                'X-Auth-Token': process.env.ACCESS_TOKEN,
-                'X-Auth-Client': process.env.CLIENT_ID
-            })
-        });
-
-        await fetch(request)
+        await fetch('/xhr/records')
             .then(response => {
                 if (response.status !== 200) {
                     console.log('Looks like there was a problem. Status Code: ' + response.status);
