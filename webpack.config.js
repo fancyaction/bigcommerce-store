@@ -44,7 +44,7 @@ module.exports = {
         port: 8080,
         open: true,
         proxy: {
-            '/xhr': 'http://localhost:7777'
+            '/xhr': 'http://localhost:9999'
         }
     }
 };
