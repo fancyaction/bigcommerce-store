@@ -1,11 +1,68 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import { Button } from 'antd';
+import { Button, Card } from 'antd';
 import 'antd/dist/antd.css';
 import './index.css';
 import Layout from './Components/Layout';
 
+
+
+
+const tabList = [
+    {
+        key: 'tab1',
+        tab: 'tab1'
+    },
+    {
+        key: 'tab2',
+        tab: 'tab2'
+    }
+];
+
+
+const contentList = {
+    tab1: <p>content1</p>,
+    tab2: <p>content2</p>
+};
+
+
+const tabListNoTitle = [
+    {
+        key: 'article',
+        tab: 'article'
+    },
+    {
+        key: 'app',
+        tab: 'app'
+    },
+    {
+        key: 'project',
+        tab: 'project'
+    }
+];
+
+
+const contentListNoTitle = {
+    article: <p>article content</p>,
+    app: <p>app content</p>,
+    project: <p>project content</p>
+};
+
+
 class App extends Component {
+    state = {
+        key: 'tab1',
+        noTitleKey: 'app',
+        records: []
+    };
+
+
+    onTabChange = (key, type) => {
+        console.log(key, type);
+        this.setState({ [type]: key });
+    };
+
+
     getRecords = async () => {
         await fetch('/xhr/records')
             .then(response => {
@@ -15,7 +72,7 @@ class App extends Component {
                 }
 
                 response.json().then(data => {
-                    console.log(data);
+                    this.setState({ records: data });
                 });
             })
             .catch(err => {
@@ -23,8 +80,10 @@ class App extends Component {
             });
     };
 
-
     render() {
+        const { records } = this.state;
+        console.log('TCL: App -> render -> records', records);
+
         return (
             <Layout>
                 <div className="App">
@@ -33,12 +92,30 @@ class App extends Component {
                         <Button type="primary" onClick={this.getRecords}>
                             Get Records
                         </Button>
+                        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gridGap: '1rem' }}>
+                            {records.map(item => {
+                                return (
+                                    <Card
+                                        style={{ width: '300px' }}
+                                        cover={<img alt="example" src="https://source.unsplash.com/1600x900/?clothes" />}
+                                        title={item.name}
+                                        extra={<a href="#">More</a>}
+                                        tabList={tabList}
+                                        activeTabKey={this.state.key}
+                                        onTabChange={key => {
+                                            this.onTabChange(key, 'key');
+                                        }}
+                                    >
+                                        {contentList[this.state.key]}
+                                    </Card>
+                                );
+                            })}
+                        </div>
                     </div>
                 </div>
             </Layout>
         );
     }
 }
-
 
 ReactDOM.render(<App />, document.getElementById('app'));
