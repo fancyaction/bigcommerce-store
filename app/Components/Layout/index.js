@@ -19,7 +19,6 @@ export default class CustomLayout extends Component {
     render() {
         const { Header, Content, Footer } = Layout;
 
-        console.log("TCL: MainMenu -> render -> this.props.children", this.props.children)
         return (
             <Layout style={{ minHeight: '100vh' }}>
                 <MainMenu />
