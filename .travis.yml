@@ -4,11 +4,14 @@ node_js:
 cache:
   directories:
     - node_modules
+install:
+  - npm install
 env:
   - NODE_ENV=production
+before_script:
+  - npm run build
 script:
   - npm test
-  - npm run build
 deploy:
   provider: surge
   skip_cleanup: true
