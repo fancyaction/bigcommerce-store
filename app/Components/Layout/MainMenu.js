@@ -24,12 +24,14 @@ export default class MainMenu extends Component {
         return [
             <Menu.Item key={0}>
                 <Link view={views.list} store={store}>
-                    List
+                    <Icon type="book" />
+                    <span>List</span>
                 </Link>
             </Menu.Item>,
             <Menu.Item key={1}>
                 <Link view={views.create} store={store}>
-                    Create
+                    <Icon type="plus" />
+                    <span>Create</span>
                 </Link>
             </Menu.Item>,
         ];
