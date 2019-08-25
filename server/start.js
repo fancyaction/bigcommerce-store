@@ -1,9 +1,9 @@
-// if( 'undefined' === typeof process.env.NODE_ENV || 'development' === process.env.NODE_ENV) {
-//   console.log('You are in development! Setting up dotenv.');
-//   require('dotenv').config({ path: '.env' });
-// } else {
-//   console.log('You are in production!');
-// }
+if( 'undefined' === typeof process.env.NODE_ENV || 'development' === process.env.NODE_ENV) {
+  console.log('You are in development! Setting up dotenv.');
+  require('dotenv').config({ path: '.env' });
+} else {
+  console.log('You are in production!');
+}
 
 
 if(process.env.PORT){

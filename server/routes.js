@@ -15,7 +15,7 @@ const config = {
 
 
 router.get('/xhr/records', async (req, res) => {
-    const URL = `${process.env.API_PATH}catalog/products`;
+    const URL = `https://api.bigcommerce.com/stores/pxfjou9wb8/v3/catalog/products`;
 
     const result = await axios.get(URL, config)
         .then(response => {
@@ -35,7 +35,7 @@ router.get('/xhr/records', async (req, res) => {
 
 
 router.get('/xhr/categories', async (req, res) => {
-    const URL = `${process.env.API_PATH}catalog/categories`;
+    const URL = `https://api.bigcommerce.com/stores/pxfjou9wb8/v3/catalog/categories`;
 
     const result = await axios.get(URL, config)
         .then(response => {
@@ -55,7 +55,7 @@ router.get('/xhr/categories', async (req, res) => {
 
 
 router.post('/xhr/records', async (req, res) => {
-    const URL = `${process.env.API_PATH}catalog/products`;
+    const URL = `https://api.bigcommerce.com/stores/pxfjou9wb8/v3/catalog/products`;
     const payload = req.body;
 
     const result = await axios.post(URL, payload, config)
