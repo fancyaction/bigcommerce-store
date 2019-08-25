@@ -57,7 +57,6 @@ router.get('/xhr/categories', async (req, res) => {
 router.post('/xhr/records', async (req, res) => {
     const URL = `${process.env.API_PATH}catalog/products`;
     const payload = req.body;
-    console.log("TCL: payload", payload)
 
     const result = await axios.post(URL, payload, config)
         .then(response => {
@@ -69,7 +68,7 @@ router.post('/xhr/records', async (req, res) => {
             return response.data.data;
         })
         .catch(err => {
-            console.log('Fetch Error :-S', err);
+            console.log('Fetch Error :-S', err.response);
         });
 
     res.send(result);
