@@ -26,9 +26,9 @@
     ]
   },
   "scripts": {
-    "build": "babel-node ./node_modules/webpack/bin/webpack",
+    "build": "babel-node webpack --config=config/webpack.prod.js",
     "start-local": "nodemon --exec babel-node server/start.js",
-    "client": "babel-node ./node_modules/webpack-dev-server/bin/webpack-dev-server --open",
+    "client": "babel-node ./node_modules/webpack-dev-server/bin/webpack-dev-server --config=config/webpack.dev.js --open",
     "dev": "concurrently \"npm run start-local\" \"npm run client\""
   },
   "keywords": [],

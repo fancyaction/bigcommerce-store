@@ -25,17 +25,24 @@ module.exports = {
             }
         ]
     },
-    mode: process.env.NODE_ENV || 'development',
+    mode: process.env.NODE_ENV || 'production',
     resolve: {
         modules: [path.resolve(__dirname, 'src'), 'node_modules']
     },
     plugins: [
-        new Dotenv({
-            path: './.env'
-        }),
         new HtmlWebpackPlugin({
             template: 'app/index.html'
         }),
+        new webpack.DefinePlugin({
+            'process.env': {
+              ACCESS_TOKEN: JSON.stringify(process.env.ACCESS_TOKEN),
+              CLIENT_ID: JSON.stringify(process.env.CLIENT_ID),
+              CLIENT_SECRET: JSON.stringify(process.env.CLIENT_SECRET),
+              NAME: JSON.stringify(process.env.NAME),
+              API_PATH: JSON.stringify(process.env.API_PATH),
+              NODE_ENV: JSON.stringify('production')
+            }
+          }),
         new webpack.HotModuleReplacementPlugin()
     ],
     devServer: {
