@@ -1,6 +1,5 @@
 import path from 'path';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
-import Dotenv from 'dotenv-webpack';
 import webpack from 'webpack';
 
 
@@ -9,8 +8,9 @@ import webpack from 'webpack';
 module.exports = {
     entry: './app/index.js',
     output: {
-        path: path.resolve(__dirname, 'dist'),
-        filename: 'index_bundle.js'
+        path: path.join(__dirname, '../dist'),
+        filename: 'index_bundle.js',
+        publicPath: '/'
     },
     module: {
         rules: [
