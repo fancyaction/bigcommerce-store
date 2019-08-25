@@ -28,11 +28,6 @@ export default class MainMenu extends Component {
                 </Link>
             </Menu.Item>,
             <Menu.Item key={1}>
-                <Link view={views.edit} store={store}>
-                    Edit
-                </Link>
-            </Menu.Item>,
-            <Menu.Item key={2}>
                 <Link view={views.create} store={store}>
                     Create
                 </Link>
@@ -46,7 +41,7 @@ export default class MainMenu extends Component {
         return (
             <Sider collapsible collapsed={this.state.collapsed} onCollapse={this.onCollapse}>
                 <div className="logo" />
-                <Menu theme="dark">{this.renderNavLinks()}</Menu>
+                <Menu style={{ position: 'fixed' }} theme="dark">{this.renderNavLinks()}</Menu>
             </Sider>
         );
     }

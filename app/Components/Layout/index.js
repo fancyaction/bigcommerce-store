@@ -23,7 +23,7 @@ export default class CustomLayout extends Component {
             <Layout style={{ minHeight: '100vh' }}>
                 <MainMenu />
                 <Layout>
-                    <Header style={{ background: '#fff', padding: 0 }} />
+                    <Header style={{ background: '#fff', padding: 0 }}><h3 style={{ marginLeft: '1rem' }}>Welcome to the Store!</h3></Header>
                     <Content style={{ margin: '0 16px' }}>
                         {this.props.children}
                     </Content>
