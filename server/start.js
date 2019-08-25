@@ -5,10 +5,14 @@ if( 'undefined' === typeof process.env.NODE_ENV || 'development' === process.env
   console.log('You are in production!');
 }
 
+console.log('PORT:', process.env.PORT)
 
-// Start our app!
-const app = require('./app');
-app.set('port', process.env.PORT || 9999);
-const server = app.listen(app.get('port'), () => {
-  console.log(`Express running → PORT ${server.address().port}`);
-});
+if(process.env.PORT){
+  const app = require('./app');
+  app.set('port', process.env.PORT || 9999);
+  const server = app.listen(app.get('port'), () => {
+    console.log(`Express running → PORT ${server.address().port}`);
+  });
+} else {
+  console.log('PORT is not defined!');
+}
