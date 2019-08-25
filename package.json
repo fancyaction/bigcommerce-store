@@ -26,11 +26,10 @@
     ]
   },
   "scripts": {
-    "build": "cross-env NODE_ENV=production babel-node ./node_modules/webpack/bin/webpack --config=config/webpack.prod.js",
+    "build": "babel-node ./node_modules/webpack/bin/webpack --config=config/webpack.prod.js",
     "start-local": "nodemon --exec babel-node server/start.js",
     "client": "cross-env NODE_ENV=development babel-node ./node_modules/webpack-dev-server/bin/webpack-dev-server --config=config/webpack.dev.js --open",
-    "dev": "concurrently \"npm run start-local\" \"npm run client\"",
-    "postbuild": "cross-env NODE_ENV=production babel-node ./node_modules/webpack/bin/webpack --config=config/webpack.prod.js --progress"
+    "dev": "concurrently \"npm run start-local\" \"npm run client\""
   },
   "keywords": [],
   "author": "",
