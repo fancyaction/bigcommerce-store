@@ -5,7 +5,6 @@ if( 'undefined' === typeof process.env.NODE_ENV || 'development' === process.env
   console.log('You are in production!');
 }
 
-console.log('PORT:', process.env.PORT)
 
 if(process.env.PORT){
   const app = require('./app');
