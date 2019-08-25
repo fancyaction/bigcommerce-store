@@ -1,7 +1,8 @@
 import React from 'react';
-import { Form, Input, InputNumber, Button } from 'antd';
+import { Form, Input, InputNumber, Button, Modal } from 'antd';
 import { observer, inject } from 'mobx-react';
 import { CategorySelect, ConditionSelect, TypeSelect } from './formHelpers';
+import views from '../../config/views';
 
 
 
@@ -38,7 +39,19 @@ class CreateForm extends React.Component {
     };
 
 
+    triggerSuccessWindow = record => {
+        const { goTo } = this.props.store.router;
+
+        Modal.success({
+          title: 'This is a success message',
+          content: `New item "${record.name}" added to inventory!`,
+          onOk() { goTo(views.list); },
+        });
+      }
+
+
     submitForm = async (formData) => {
+
         await fetch('/xhr/records', { method: 'POST', body: JSON.stringify(formData), headers: {"Content-Type": "application/json"} })
             .then(response => {
                 if (response.status !== 200) {
@@ -48,6 +61,7 @@ class CreateForm extends React.Component {
 
                 response.json().then(data => {
                     console.log("TCL: CreateForm -> submitForm -> data", data)
+                    this.triggerSuccessWindow(data);
                 });
             })
             .catch(err => {
