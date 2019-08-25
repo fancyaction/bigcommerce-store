@@ -4,9 +4,6 @@ node_js:
 cache:
   directories:
     - node_modules
-env:
-  global:
-  - NODE_ENV=production
 before_deploy:
   - npm test
   - npm run build
