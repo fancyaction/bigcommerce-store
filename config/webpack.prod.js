@@ -1,6 +1,6 @@
-import path from 'path';
-import HtmlWebpackPlugin from 'html-webpack-plugin';
-import webpack from 'webpack';
+const path =  require('path');
+const HtmlWebpackPlugin =  require('html-webpack-plugin');
+const webpack =  require('webpack');
 
 
 
@@ -44,14 +44,5 @@ module.exports = {
             }
           }),
         new webpack.HotModuleReplacementPlugin()
-    ],
-    devServer: {
-        hot: true,
-        historyApiFallback: true,
-        port: 8080,
-        open: true,
-        proxy: {
-            '/xhr': 'http://localhost:9999'
-        }
-    }
+    ]
 };
