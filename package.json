@@ -4,6 +4,7 @@
   "description": "",
   "main": "start.js",
   "scripts": {
+    "start": "node server/start.js",
     "build": "cross-env NODE_ENV=production webpack --config=config/webpack.prod.js",
     "start-local": "nodemon --exec babel-node server/start.js",
     "client": "cross-env NODE_ENV=development babel-node ./node_modules/webpack-dev-server/bin/webpack-dev-server --config=config/webpack.dev.js --open",
