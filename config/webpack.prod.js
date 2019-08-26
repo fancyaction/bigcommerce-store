@@ -16,7 +16,13 @@ module.exports = {
       },
     module: {
         rules: [
-            { test: /\.(js)$/, use: 'babel-loader' },
+            {
+                test: /\.(js|jsx)$/,
+                exclude: /node_modules/,
+                use: {
+                  loader: 'babel-loader'
+                }
+            },
             {
                 test: /\.(css|scss)$/,
                 use: ['style-loader', 'css-loader', 'sass-loader']
@@ -26,9 +32,6 @@ module.exports = {
                 loaders: ['file-loader']
             }
         ]
-    },
-    resolve: {
-        modules: [path.resolve(__dirname, 'src'), 'node_modules']
     },
     plugins: [
         new HtmlWebpackPlugin({
