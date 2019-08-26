@@ -7,6 +7,7 @@ import webpack from 'webpack';
 
 module.exports = {
     entry: './app/index.js',
+    mode: 'production',
     output: {
         path: path.join(__dirname, '../dist'),
         filename: 'index_bundle.js',
@@ -25,7 +26,6 @@ module.exports = {
             }
         ]
     },
-    mode: process.env.NODE_ENV || 'production',
     resolve: {
         modules: [path.resolve(__dirname, 'src'), 'node_modules']
     },
@@ -44,5 +44,14 @@ module.exports = {
             }
           }),
         new webpack.HotModuleReplacementPlugin()
-    ]
+    ],
+    devServer: {
+        hot: true,
+        historyApiFallback: true,
+        port: 8080,
+        open: true,
+        proxy: {
+            '/xhr': 'http://localhost:9999'
+        }
+    }
 };
