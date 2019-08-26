@@ -25,7 +25,7 @@ const ConditionSelect = ({ handleSelectChange }) => (
         placeholder="Select condition"
         onChange={handleSelectChange}
     >
-        <Option value="Used,">Used</Option>
+        <Option value="Used">Used</Option>
         <Option value="New">New</Option>
         <Option value="Refurbished">Refurbished</Option>
     </Select>
