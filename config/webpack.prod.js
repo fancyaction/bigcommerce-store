@@ -1,6 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
+const outputDirectory = '../dist';
 
 
 
@@ -9,10 +10,10 @@ module.exports = {
     entry: './app/index.js',
     mode: 'production',
     output: {
-        path: path.join(__dirname, '../dist'),
-        filename: 'index_bundle.js',
+        path: path.join(__dirname, outputDirectory),
+        filename: '[name]-bundle.js',
         publicPath: '/'
-    },
+      },
     module: {
         rules: [
             { test: /\.(js)$/, use: 'babel-loader' },
@@ -31,8 +32,7 @@ module.exports = {
     },
     plugins: [
         new HtmlWebpackPlugin({
-            template: './public/index.html',
-            favicon: './public/favicon.ico'
+            template: 'app/index.html',
         }),
         new webpack.DefinePlugin({
             'process.env': {
@@ -44,7 +44,6 @@ module.exports = {
               NODE_ENV: JSON.stringify('production')
             }
           }),
-        new webpack.HotModuleReplacementPlugin()
     ],
     devServer: {
         hot: true,
