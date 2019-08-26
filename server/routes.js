@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const path = require('path');
 const axios = require('axios');
 
 
@@ -13,10 +14,6 @@ const config = {
     }
 };
 
-
-app.get('/', function(req, res){
-    res.redirect('/');
- });
 
 router.get('/xhr/records', async (req, res) => {
     const URL = `${process.env.API_PATH}catalog/products`;
