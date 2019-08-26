@@ -14,6 +14,10 @@ const config = {
 };
 
 
+app.get('/', function(req, res){
+    res.redirect('/');
+ });
+
 router.get('/xhr/records', async (req, res) => {
     const URL = `${process.env.API_PATH}catalog/products`;
 
